@@ -5,6 +5,30 @@
     "description": "Bug report example",
     "type": "object",
     "definitions": {
+        "nestedparams": {
+            "title": "NestedParams",
+            "type": "object",
+            "description": "",
+            "default": "",
+            "properties": {
+                "nested_params.p1": {
+                    "type": "integer",
+                    "default": 1
+                },
+                "nested_params.p2": {
+                    "type": "integer",
+                    "default": 2
+                },
+                "nested_params.p3": {
+                    "type": "integer",
+                    "default": 3
+                },
+                "nested_params.p4": {
+                    "type": "integer",
+                    "default": 4
+                }
+            }
+        },
         "input_output_options": {
             "title": "Input/output options",
             "type": "object",
@@ -116,7 +140,6 @@
                     "type": "boolean",
                     "description": "Display help text.",
                     "fa_icon": "fas fa-question-circle",
-                    "default": false,
                     "hidden": true
                 },
                 "publish_dir_mode": {
@@ -146,7 +169,6 @@
                     "type": "boolean",
                     "fa_icon": "far fa-eye-slash",
                     "description": "Show all params when using `--help`",
-                    "default": false,
                     "hidden": true,
                     "help_text": "By default, parameters set as _hidden_ in the schema are not shown on the command line when a user runs with `--help`. Specifying this option will tell the pipeline to show all parameters."
                 },
@@ -154,7 +176,6 @@
                     "type": "boolean",
                     "fa_icon": "far fa-check-circle",
                     "description": "Validation of parameters fails when an unrecognised parameter is found.",
-                    "default": false,
                     "hidden": true,
                     "help_text": "By default, when an unrecognised parameter is found, it returns a warinig."
                 },
@@ -162,7 +183,6 @@
                     "type": "boolean",
                     "fa_icon": "far fa-check-circle",
                     "description": "Validation of parameters in lenient more.",
-                    "default": false,
                     "hidden": true,
                     "help_text": "Allows string values that are parseable as numbers or booleans. For further information see [JSONSchema docs](https://github.com/everit-org/json-schema#lenient-mode)."
                 }
@@ -170,6 +190,9 @@
         }
     },
     "allOf": [
+        {
+            "$ref": "#/definitions/nestedparams"
+        },
         {
             "$ref": "#/definitions/input_output_options"
         },
