@@ -1,0 +1,22 @@
+nextflow_pipeline {
+
+    name "Full test of example workflow"
+    script "main.nf"
+
+    test("Should pass"){
+        tag "pass"
+
+        when {
+            params {
+                input = "$baseDir/assets/samplesheet.csv"
+                outdir = "results"
+            }
+        }
+
+        then {
+            workflow.success
+        }
+    }
+
+
+}
